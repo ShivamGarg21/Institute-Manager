@@ -11,6 +11,33 @@ The schema and APIs are part of a system designed to organize and manage educati
 
 The APIs support these relationships by enabling the saving of entries, retrieving institutes and their types, fetching specific entities like boards, and linking standards with their respective classes and subjects. This interconnected system streamlines managing educational data for effective administration and retrieval.
 
+Here’s an explanation of the table relationships using **Primary Key (PK)** and **Foreign Key (FK)** terminology:
+
+| **Table Name**          | **Column**             | **Relation**                                                   | **Primary Key (PK)**         | **Foreign Key (FK)**                     |
+|--------------------------|------------------------|-----------------------------------------------------------------|-------------------------------|-------------------------------------------|
+| **Institute Details**    | `entity_type`          | Defines the type of entity (e.g., board, university).            | `type`                        | -                                         |
+| **Entities**             | `type`, `entity_name` | Maps entities (e.g., CBSE, GBSE) to their standard type.         | `type`, `entity_name`         | `entity_type` references `Institute Details.entity_type` |
+| **Standard Details**     | `type`, `name`        | Lists standards (e.g., Pre-primary, Higher Secondary) and subjects. | `type`, `name`               | `type` references `Entities.standard_type` |
+| **Entries**              | `institute`, `entity`, `standard`, `subjects` | Links all components for each entry.                           | -                             | - `institute` references `Institute Details.type`  <br> - `entity` references `Entities.entity_name` <br> - `standard` references `Standard Details.name` |
+
+### **Details of Foreign Key Relationships**:
+1. **Institute Details ↔ Entities**:  
+   - `entity_type` in **Institute Details** serves as the PK.  
+   - `entity_type` in **Entities** is a FK referencing the `entity_type` in **Institute Details**.  
+   This maps institutes (like schools or colleges) to their respective boards or universities.
+
+2. **Entities ↔ Standard Details**:  
+   - `standard_type` in **Entities** serves as the FK.  
+   - `type` in **Standard Details** references the `standard_type` in **Entities**.  
+   This connects specific entities (e.g., CBSE) to relevant standards (e.g., Pre-primary).
+
+3. **Entries ↔ All Tables**:  
+   - **Institute Details**: `institute` in **Entries** references the `type` in **Institute Details**.  
+   - **Entities**: `entity` in **Entries** references the `entity_name` in **Entities**.  
+   - **Standard Details**: `standard` in **Entries** references the `name` in **Standard Details**.  
+
+This structure uses primary and foreign keys to enforce referential integrity, ensuring data consistency across the system.
+
 
 **Schema**
 **entries** table to contain all entries
