@@ -15,9 +15,9 @@ Here’s an explanation of the table relationships using **Primary Key (PK)** an
 
 | **Table Name**          | **Column**             | **Relation**                                                   | **Primary Key (PK)**         | **Foreign Key (FK)**                     |
 |--------------------------|------------------------|-----------------------------------------------------------------|-------------------------------|-------------------------------------------|
-| **Institute Details**    | `entity_type`          | Defines the type of entity (e.g., board, university).            | `type`                        | -                                         |
-| **Entities**             | `type`, `entity_name` | Maps entities (e.g., CBSE, GBSE) to their standard type.         | `type`, `entity_name`         | `entity_type` references `Institute Details.entity_type` |
-| **Standard Details**     | `type`, `name`        | Lists standards (e.g., Pre-primary, Higher Secondary) and subjects. | `type`, `name`               | `type` references `Entities.standard_type` |
+| **Institute Details**    | `entity_type`          | Defines the type of entity (e.g., board, university).            |                        | -             `entity_type`                            |
+| **Entities**             | `type`, `entity_name` | Maps entities (e.g., CBSE, GBSE) to their standard type.         | `type` references `Institute Details.entity_type`        | `type`  |
+| **Standard Details**     | `type`, `name`        | Lists standards (e.g., Pre-primary, Higher Secondary) and subjects. | `type` references `Entities.standard_type`              |   |
 | **Entries**              | `institute`, `entity`, `standard`, `subjects` | Links all components for each entry.                           | -                             | - `institute` references `Institute Details.type`  <br> - `entity` references `Entities.entity_name` <br> - `standard` references `Standard Details.name` |
 
 ### **Details of Foreign Key Relationships**:
