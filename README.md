@@ -1,3 +1,17 @@
+**Summary**
+The schema and APIs are part of a system designed to organize and manage educational data, establishing relationships between institutes, entities, standards, classes, and subjects. Here’s how they interconnect:
+
+**Institutes and Entity Types**: The institute details table maps institute types (e.g., schools, colleges) to their entity types (e.g., boards like CBSE or universities). This relationship establishes the framework for categorizing educational institutions and their governing entities, ensuring precise differentiation.
+
+**Entities and Standards**: The entities table contains information about organizations like boards (CBSE, GBSE) or universities. Each entity has a standard_type that defines its associated standard framework, such as schools having pre-primary or higher-secondary standards. This mapping ensures that the right standards are linked to the respective entity.
+
+**Standards, Classes, and Subjects:** The standard_details table provides detailed class structures and associated subjects for each standard_type. For example, "Pre-Primary" includes classes like LKG and UKG with subjects such as English and Hindi, while "Higher Secondary" includes classes 9th and 10th, focusing on subjects like Maths and Science.
+
+**Entries:** The entries table ties these components together by associating a specific institute type, entity (e.g., CBSE), standard, and subjects. This allows for saving and retrieving structured educational data.
+
+The APIs support these relationships by enabling the saving of entries, retrieving institutes and their types, fetching specific entities like boards, and linking standards with their respective classes and subjects. This interconnected system streamlines managing educational data for effective administration and retrieval.
+
+
 **Schema**
 **entries** table to contain all entries
 [    
